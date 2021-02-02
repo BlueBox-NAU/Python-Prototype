@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 
 config = Configurator()
 config.add_route('home', '')
+config.add_route('demo1', '/demo1/')
 # config.add_route('about', '/about/')
 # config.add_route('jbrowse', '/jbrowse/')
 # config.add_route('newHub', '/newHub/')
