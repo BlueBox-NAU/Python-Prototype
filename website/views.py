@@ -1,6 +1,8 @@
 from pyramid.httpexceptions import HTTPFound
 from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.authentication import BasicAuthAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
 
 membersVar = [
     {'id': 1,
