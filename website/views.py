@@ -4,6 +4,8 @@ from pyramid.view import view_config
 from pyramid.authentication import BasicAuthAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 
+
+# TEMP - Variable to contain members to act as our database
 membersVar = [
     {'id': 1,
     'email': 'jdh553@nau.edu',
@@ -13,11 +15,14 @@ membersVar = [
     'password': 'password'}
 ]
 
+
+# Handles home page rendering
 @view_config(route_name='home', renderer='index.html')
 def home(request):
     return {}
 
-#SIGN IN
+
+# SIGN IN -- Handles /demo1/ and attemp sign in
 @view_config(route_name='demo1', renderer='demo1/index.html')
 def demo1(request):
     if request.method == 'POST':
@@ -32,7 +37,8 @@ def demo1(request):
     else:
         return{'members': membersVar} # display members in membersVar at bottom of page
 
-#SIGN UP
+
+# CREATE ACCOUNT -- Handles /register/ and create account form data
 @view_config(route_name='register', renderer='demo1/register.html')
 def register(request):
     if request.method == 'POST':
