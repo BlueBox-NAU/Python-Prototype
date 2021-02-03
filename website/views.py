@@ -22,30 +22,30 @@ def home(request):
     return {}
 
 
-# SIGN IN -- Handles /demo1/ and attemp sign in
-@view_config(route_name='demo1', renderer='demo1/index.html')
-def demo1(request):
+# SIGN IN -- Handles /login/ and attemp sign in
+@view_config(route_name='login', renderer='login/index.html')
+def login(request):
     if request.method == 'POST':
         for member in membersVar:
             if(request.params['email'] == member['email']):
                 print("\nFOUND\n")
-                url = request.route_url('demo1')
+                url = request.route_url('login')
                 return HTTPFound(location=url)
         print("\nNOT FOUND\n")
-        url = request.route_url('demo1')
+        url = request.route_url('login')
         return HTTPFound(location=url)
     else:
         return{'members': membersVar} # display members in membersVar at bottom of page
 
 
 # CREATE ACCOUNT -- Handles /register/ and create account form data
-@view_config(route_name='register', renderer='demo1/register.html')
+@view_config(route_name='register', renderer='login/register.html')
 def register(request):
     if request.method == 'POST':
         membersVar.append({'id': 99, 
                         'email':request.params['email'],
                         'password':request.params['password']})
-        url = request.route_url('demo1')
+        url = request.route_url('login')
         return HTTPFound(location=url)
     else:
         return{'members': membersVar} # display members in membersVar at bottom of page

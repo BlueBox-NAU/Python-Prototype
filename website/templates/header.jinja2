@@ -29,7 +29,7 @@
 <body>
 {% block body %}
     <div class="d-flex flex-column h-100">
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
                 <a class="navbar-brand" href="/">
@@ -38,12 +38,22 @@
 
             </div>
         </nav>
-
         {% block content %}
-            <div class="d-flex flex-column flex-grow">
-                {% block filled %}
-                {% endblock %}
+
+            {# TEMPLATE FOR USER LOGIN BOX #}
+            <div class="d-flex justify-content-center">
+                <div class="container mt-4" style = "background-color: whitesmoke; padding: 25px; border-color: black; border-width: 4px; border-style: solid; margin: 10px; width: 450px; min-width: 400px">
+                    {% block account_box %}
+                    {% endblock %}
+                    <h4><b>Members:</b></h4>
+                    <ul class="list-group">
+                        {% for i in members%}
+                        <li class ="list-group-item">Email: {{i['email']}} | Password: {{i['password']}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
+
         {% endblock %}
     </div>
 {% endblock %}
