@@ -24,18 +24,33 @@ def home(request):
 
 # SIGN IN -- Handles /login/ and attemp sign in
 @view_config(route_name='login', renderer='login/index.html')
+def loginPage(request):
+    return {'members':membersVar}
+
+@view_config(route_name='login', request_method='POST')
 def login(request):
-    if request.method == 'POST':
-        for member in membersVar:
-            if(request.params['email'] == member['email']):
-                print("\nFOUND\n")
-                url = request.route_url('login')
-                return HTTPFound(location=url)
+    for member in membersVar:
+        if(request.params['email'] == member['email']):
+            print("\nFOUND\n")
+            url = request.route_url('login')
+            return HTTPFound(location=url)
         print("\nNOT FOUND\n")
         url = request.route_url('login')
         return HTTPFound(location=url)
-    else:
-        return{'members': membersVar} # display members in membersVar at bottom of page
+
+# @view_config(route_name='login', renderer='login/index.html')
+# def login(request):
+#     if request.method == 'POST':
+#         for member in membersVar:
+#             if(request.params['email'] == member['email']):
+#                 print("\nFOUND\n")
+#                 url = request.route_url('login')
+#                 return HTTPFound(location=url)
+#         print("\nNOT FOUND\n")
+#         url = request.route_url('login')
+#         return HTTPFound(location=url)
+#     else:
+#         return{'members': membersVar} # display members in membersVar at bottom of page
 
 
 # CREATE ACCOUNT -- Handles /register/ and create account form data
