@@ -3,8 +3,12 @@ from pyramid.config import Configurator
 
 config = Configurator()
 config.add_route('home', '')
+
+# DEMO 1 Routes
 config.add_route('login', '/login/')
+config.add_route('logout', '/logout/')
 config.add_route('register', '/register/')
+
 config.add_route('members', '/members/')
 # config.add_route('about', '/about/')
 # config.add_route('jbrowse', '/jbrowse/')
