@@ -6,3 +6,5 @@ members = [
     'email': 'zsw23@nau.edu',
     'password': 'password'}
 ]
+
+USERS = {}

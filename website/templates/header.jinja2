@@ -50,8 +50,8 @@
                     {% endblock %}
                     <h4><b>Members:</b></h4>
                     <ul class="list-group">
-                        {% for i in members%}
-                        <li class ="list-group-item">Email: {{i['email']}} | Password: {{i['password']}}</li>
+                        {% for login in users%}
+                        <li class ="list-group-item">Email: {{login}} | Password: {{login}}</li>
                         {% endfor %}
                     </ul>
                 </div>
