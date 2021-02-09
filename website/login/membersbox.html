@@ -1,0 +1,10 @@
+{% extends "../templates/login.jinja2" %}
+
+{% block members_box %}              
+    <h4><b>Members:</b></h4>
+    <ul class="list-group">
+        {% for login in users %}
+        <li class ="list-group-item">Email: {{login}} | Password: {{login}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

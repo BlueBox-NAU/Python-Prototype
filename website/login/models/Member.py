@@ -1,8 +1,17 @@
 from pyramid.security import Allow
-from pyramid.security import Everyone
 
+# DEFINE MEMBER MODEL
 class Member(object):
-    __acl__ = [
-        (Allow, Everyone, 'validUser'),
-        (Allow, 'group:editors', 'validUser'),
+    @property
+    def __acl__(self):
+        return [
+            (Allow, self.login, 'view'),
         ]
+
+    def __init__(self, login, password, groups=None):
+        self.login = login
+        self.password = password
+        self.groups = groups or []
+
+    def check_password(self, passwd):
+        return self.password == passwd
