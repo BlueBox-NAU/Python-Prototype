@@ -24,9 +24,12 @@ def forbidden_view(request):
     url = request.route_url('login', _query=(('next', request.path),))
     return HTTPFound(location=url)
 
+### DEMO 1 Views
+
 # SIGN IN -- Handles /login/ and attemp sign in
 @view_config(route_name='login', renderer='login/index.html')
 def loginPage(request):
+    
     return {'users':USERS}
 
 @view_config(route_name='login', request_method='POST')
@@ -41,7 +44,7 @@ def login(request):
         print("\nFOUND\n")
         headers = remember(request, login)
         url = request.route_url('user')
-        return HTTPFound(location=url, headers=headers)      
+        return HTTPFound(location=url, headers=headers)
     # for member in members:
     #     if(useremail == member['email']):
     #         print("\nFOUND\n")
@@ -68,7 +71,6 @@ def user(request):
     url = request.route_url('login')
     return HTTPFound(location=url)
 
-
 # CREATE ACCOUNT -- Handles /register/ and create account form data
 @view_config(route_name='register', renderer='login/register.html')
 def registerPage(request):
@@ -82,4 +84,8 @@ def register(request):
     url = request.route_url('login')
     return HTTPFound(location=url)
 
-# USER AUTHENTICATION
+
+### DEMO 2 Views
+@view_config(route_name='dbproto', renderer='dbproto/index.html')
+def dbpage(request):
+    return {}

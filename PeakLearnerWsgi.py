@@ -18,9 +18,6 @@ from website.login.models.Member import Member
 
 from website.models import USERS
 
-### INITIALIZE MODEL
-HUBS = {}
-
 def _create_user(login, **kw):
     kw.setdefault('password', login)
     USERS[login] = Member(login, **kw)
@@ -30,6 +27,7 @@ _create_user('zsw23@nau.edu')
 _create_user('editor', groups=['editor'])
 _create_user('admin', groups=['admin'])
 
+#FACTORIES
 class RootFactory(object):
     __acl__ = [
         (Allow, 'g:admin', ALL_PERMISSIONS),
@@ -67,11 +65,16 @@ config.add_route('login', '/login/')
 config.add_route('logout', '/logout/')
 #config.add_route('user', '/user/')
 config.add_route('register', '/register/')
-
+config.add_route('members', '/members/')
 config.add_route('user', '/user/{login}', factory=MemberFactory,
                      traverse='/{login}')
 
-config.add_route('members', '/members/')
+
+# DEMO 2 Routes
+config.add_route('dbproto', '/dbproto/')
+
+
+# MAIN Routes
 config.include('pyramid_jinja2')
 config.add_jinja2_renderer('.html')
 config.scan('website.views')
